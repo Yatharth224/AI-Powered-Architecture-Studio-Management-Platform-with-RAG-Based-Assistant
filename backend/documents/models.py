@@ -27,8 +27,7 @@ class Document(models.Model):
     title       = models.CharField(max_length=200)
     file        = models.FileField(upload_to='documents/%Y/%m/')
     file_type   = models.CharField(max_length=20, choices=FileType.choices, default=FileType.OTHER)
-    uploaded_at = models.DateTimeField(auto_now_add=True)
-
+    updated_at = models.DateTimeField(auto_now=True)
     class Meta:
         db_table = 'documents'
 
