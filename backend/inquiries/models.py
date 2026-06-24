@@ -1,5 +1,6 @@
-from django.db import models
+# inquiries/models.py
 
+from django.db import models
 
 
 class Inquiry(models.Model):
@@ -15,8 +16,13 @@ class Inquiry(models.Model):
     phone      = models.CharField(max_length=15, blank=True)
     subject    = models.CharField(max_length=200)
     message    = models.TextField()
-    status     = models.CharField(max_length=20, choices=Status.choices, default=Status.NEW)
-    created_at = models.DateTimeField(auto_now_add=True)
+    status     = models.CharField(
+        max_length=20,
+        choices=Status.choices,
+        default=Status.NEW
+    )
+    created_at = models.DateTimeField(auto_now_add=True)  # ← ye tha missing
+    updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
         db_table = 'inquiries'
