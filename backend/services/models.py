@@ -18,7 +18,7 @@ class Service(models.Model):
     price_range = models.CharField(max_length=100, blank=True)
     image       = models.ImageField(upload_to='services/', blank=True, null=True)
     is_active   = models.BooleanField(default=True)
-    created_at  = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
         db_table = 'services'
