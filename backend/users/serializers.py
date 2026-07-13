@@ -11,4 +11,15 @@ class ArchitectInviteSerializer(serializers.ModelSerializer):
     confirm_password = serializers.CharField(write_only=True)
 
 
+    class Meta:
+        model =User
+        fields = [
+            'email',
+            'username',
+            'password',
+            'confirm_password',
+            'phone'
+        ]
+
+
     
