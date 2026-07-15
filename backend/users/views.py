@@ -30,3 +30,5 @@ logger = logging.getLogger(__name__)
 
 class LoginRateThrottle(AnonRateThrottle):
     rate = '5/minute'
+
+class RegisterRateThrottle(AnonRateThrottle):    
