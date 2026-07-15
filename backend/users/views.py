@@ -22,3 +22,7 @@ from .serializers import (
     ArchitectInviteSerializer,
     ArchitectRegisterSerializer,
 )
+
+
+User = get_user_model()
+logger = logging.getLogger(__name__)
