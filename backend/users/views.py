@@ -31,4 +31,18 @@ logger = logging.getLogger(__name__)
 class LoginRateThrottle(AnonRateThrottle):
     rate = '5/minute'
 
-class RegisterRateThrottle(AnonRateThrottle):    
+class RegisterRateThrottle(AnonRateThrottle):
+    rate = '3/minute'    
+
+
+
+class CustomTokenSerializer(TokenObtainPairSerializer):
+    @classmethod
+    def get_token(cls, user):
+        token = super().get_token(user)
+        # Extra data token mein add karo
+        # Frontend ko role pata chalega
+        token['role']     = user.role
+        token['email']    = user.email
+        token['username'] = user.username
+        return token
