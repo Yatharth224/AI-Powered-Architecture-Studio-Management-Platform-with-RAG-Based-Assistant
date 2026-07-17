@@ -19,6 +19,7 @@ class Document(models.Model):
         on_delete=models.CASCADE,
         related_name='documents'
     )
+    created_at  = models.DateTimeField(auto_now_add=True)
     uploaded_by = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.SET_NULL,
