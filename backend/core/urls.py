@@ -27,6 +27,7 @@ urlpatterns = [
     path('api/projects/', include('projects.urls')),
     path('api/documents/', include('documents.urls')),  
     path('api/services/',   include('services.urls')),
+    path('api/inquiries/',  include('inquiries.urls')),
 ]
 if settings.DEBUG:
     urlpatterns += static(
