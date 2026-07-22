@@ -28,7 +28,7 @@ urlpatterns = [
     path('api/documents/', include('documents.urls')),  
     path('api/services/',   include('services.urls')),
     path('api/inquiries/',  include('inquiries.urls')),
-    path('api/notifications/'
+     path('api/notifications/', include('notifications.urls')),
 ]
 if settings.DEBUG:
     urlpatterns += static(
