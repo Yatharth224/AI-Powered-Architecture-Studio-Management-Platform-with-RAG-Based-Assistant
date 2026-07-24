@@ -94,3 +94,8 @@ class DashboardStatsView(APIView):
                 'conversion_rate':  f"{conversion_rate}%",
             }
         })
+
+
+
+
+class ProjectAnalyticsView(APIView):
