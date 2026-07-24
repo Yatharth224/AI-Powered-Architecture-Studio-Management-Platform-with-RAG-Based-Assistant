@@ -1,3 +1,4 @@
+# analytics/views.py
 
 from django.db.models import Count, Sum, Q
 from django.utils import timezone
@@ -96,10 +97,11 @@ class DashboardStatsView(APIView):
         })
 
 
-
-
 class ProjectAnalyticsView(APIView):
-
+    """
+    GET /api/analytics/projects/
+    Detailed project-wise analytics
+    """
     permission_classes = [IsAdmin]
 
     def get(self, request):
@@ -111,3 +113,23 @@ class ProjectAnalyticsView(APIView):
             .annotate(project_count=Count('id'))
             .order_by('-project_count')
         )
+        # __isnull=False → architect assign hai un projects ko hi lo
+
+        # Milestone completion rate
+        total_milestones     = Milestone.objects.count()
+        completed_milestones = Milestone.objects.filter(status='completed').count()
+
+        milestone_completion_rate = 0
+        if total_milestones > 0:
+            milestone_completion_rate = round(
+                (completed_milestones / total_milestones) * 100, 2
+            )
+
+        return Response({
+            'architect_workload': list(architect_workload),
+            'milestones': {
+                'total':            total_milestones,
+                'completed':        completed_milestones,
+                'completion_rate':  f"{milestone_completion_rate}%",
+            }
+        })
