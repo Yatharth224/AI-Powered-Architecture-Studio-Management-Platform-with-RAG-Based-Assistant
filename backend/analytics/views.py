@@ -99,3 +99,15 @@ class DashboardStatsView(APIView):
 
 
 class ProjectAnalyticsView(APIView):
+
+    permission_classes = [IsAdmin]
+
+    def get(self, request):
+        # Har architect ke kitne projects hain
+        architect_workload = (
+            Project.objects
+            .filter(architect__isnull=False)
+            .values('architect__username')
+            .annotate(project_count=Count('id'))
+            .order_by('-project_count')
+        )
