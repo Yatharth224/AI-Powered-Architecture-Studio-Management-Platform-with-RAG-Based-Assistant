@@ -28,8 +28,8 @@ urlpatterns = [
     path('api/documents/', include('documents.urls')),  
     path('api/services/',   include('services.urls')),
     path('api/inquiries/',  include('inquiries.urls')),
-     path('api/notifications/', include('notifications.urls')),
-     path('api/analytics/',      include('analytics.urls')),
+    path('api/notifications/', include('notifications.urls')),
+    path('api/analytics/',      include('analytics.urls')),
 ]
 if settings.DEBUG:
     urlpatterns += static(
