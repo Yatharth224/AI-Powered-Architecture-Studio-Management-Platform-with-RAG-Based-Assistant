@@ -10,3 +10,5 @@ class NotificationSerializer(serializers.ModelSerializer):
         fields = ['id', 'title', 'message', 'is_read', 'created_at']
         read_only_fields = ['id', 'title', 'message', 'created_at']
         # User sirf is_read change kar sakta hai — title/message nahi
+
+        
