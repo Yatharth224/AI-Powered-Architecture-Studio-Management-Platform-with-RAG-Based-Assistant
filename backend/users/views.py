@@ -316,9 +316,7 @@ class InviteArchitectView(APIView):
         }, status=status.HTTP_201_CREATED)
 
 
-# ----------------------------
-# ARCHITECT REGISTER
-# ----------------------------
+--
 
 class ArchitectRegisterView(APIView):
     """
@@ -339,7 +337,7 @@ class ArchitectRegisterView(APIView):
 
         invite = serializer.validated_data['invite']
 
-        
+        # Architect user banao
         user = User.objects.create_user(
             email    = invite.email,
             username = serializer.validated_data['username'],
