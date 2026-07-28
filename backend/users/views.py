@@ -316,9 +316,9 @@ class InviteArchitectView(APIView):
         }, status=status.HTTP_201_CREATED)
 
 
-# ----------------------------
+# ---------------------------
 # ARCHITECT REGISTER
-# ----------------------------
+# ---------------------------
 
 class ArchitectRegisterView(APIView):
     """
