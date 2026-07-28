@@ -351,7 +351,7 @@ class ArchitectRegisterView(APIView):
         invite.is_used = True
         invite.save()
 
-        
+        # Auto login
         refresh = RefreshToken.for_user(user)
 
         logger.info(f"New architect registered: {user.email}")
