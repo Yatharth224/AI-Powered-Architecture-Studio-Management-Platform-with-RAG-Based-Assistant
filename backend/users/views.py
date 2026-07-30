@@ -284,7 +284,7 @@ class UpdateUserRoleView(APIView):
 # --------------------------
 # ARCHITECT INVITE
 # OWASP A01 - Sirf admin invite kar sakta hai
-# --------------------------
+# ---------------------------
 
 class InviteArchitectView(APIView):
     """
