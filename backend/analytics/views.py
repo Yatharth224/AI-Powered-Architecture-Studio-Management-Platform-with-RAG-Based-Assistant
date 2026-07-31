@@ -60,7 +60,7 @@ class DashboardStatsView(APIView):
         # 'or 0' zaroori hai — agar koi project nahi hai
         # to Sum None return karega, error aa sakta hai
 
-        # ----------------------------
+        # ---------------------------
         # INQUIRY / LEAD STATS
         # ----------------------------
         total_inquiries    = Inquiry.objects.count()
