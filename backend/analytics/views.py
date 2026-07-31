@@ -53,7 +53,7 @@ class DashboardStatsView(APIView):
 
         # ----------------------------
         # REVENUE STATS
-        # ----------------------------
+        # ---------------------------
         total_budget = Project.objects.aggregate(
             total=Sum('budget')
         )['total'] or 0
