@@ -113,8 +113,7 @@ class ProjectAnalyticsView(APIView):
             .annotate(project_count=Count('id'))
             .order_by('-project_count')
         )
-        # __isnull=False → architect assign hai un projects ko hi 
-
+       
         # Milestone completion rate
         total_milestones     = Milestone.objects.count()
         completed_milestones = Milestone.objects.filter(status='completed').count()
