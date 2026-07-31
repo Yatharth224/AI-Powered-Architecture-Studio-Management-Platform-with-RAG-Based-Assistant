@@ -51,7 +51,7 @@ class DashboardStatsView(APIView):
             # __gte = greater than or equal (>=)
         ).count()
 
-        # ----------------------------
+        # ---------------------------
         # REVENUE STATS
         # ---------------------------
         total_budget = Project.objects.aggregate(
