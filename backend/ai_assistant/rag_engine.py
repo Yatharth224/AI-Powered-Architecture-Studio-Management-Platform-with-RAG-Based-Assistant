@@ -27,3 +27,10 @@ def chunk_projects_file(text):
     todta hai (word count se nahi, structure se)
     """
     chunks = []
+    # "Project:" se shuru hone wale har block
+    # ko alag chunk banao
+    project_blocks = re.split(r'\n(?=Project:)', text)
+
+    for block in project_blocks:
+        if not block.strip().startswith('Project:'):
+            continue  # header/intro text skip karo
