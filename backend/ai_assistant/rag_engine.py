@@ -22,3 +22,8 @@ def load_all_documents():
 
 
 def chunk_projects_file(text):
+    """
+    projects.txt ko har PROJECT ke hisaab se
+    todta hai (word count se nahi, structure se)
+    """
+    chunks = []
