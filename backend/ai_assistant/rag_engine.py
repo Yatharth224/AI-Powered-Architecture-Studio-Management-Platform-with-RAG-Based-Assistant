@@ -41,3 +41,15 @@ def chunk_projects_file(text):
         budget_match    = re.search(r'Budget:\s*(.+)', block)
         image_match     = re.search(r'Image:\s*(.+)', block)
 
+
+         chunk = {
+            'text':     block.strip(),
+            'title':    title_match.group(1).strip() if title_match else '',
+            'category': category_match.group(1).strip() if category_match else '',
+            'area':      area_match.group(1).strip() if area_match else '',
+            'budget':    budget_match.group(1).strip() if budget_match else '',
+            'image':     image_match.group(1).strip() if image_match else None,
+            'source':    'projects.txt'
+        }
+        chunks.append(chunk)
+
