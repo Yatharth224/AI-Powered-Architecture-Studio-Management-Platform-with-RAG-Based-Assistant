@@ -34,3 +34,10 @@ def chunk_projects_file(text):
     for block in project_blocks:
         if not block.strip().startswith('Project:'):
             continue  # header/intro text skip karo
+            # Metadata nikalo regex se
+        title_match    = re.search(r'Project:\s*(.+)', block)
+        category_match = re.search(r'Category:\s*(.+)', block)
+        area_match      = re.search(r'Area:\s*(.+)', block)
+        budget_match    = re.search(r'Budget:\s*(.+)', block)
+        image_match     = re.search(r'Image:\s*(.+)', block)
+
