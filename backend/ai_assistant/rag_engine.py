@@ -27,6 +27,7 @@ def chunk_projects_file(text):
     todta hai (word count se nahi, structure se)
     """
     chunks = []
+
     # "Project:" se shuru hone wale har block
     # ko alag chunk banao
     project_blocks = re.split(r'\n(?=Project:)', text)
@@ -34,15 +35,15 @@ def chunk_projects_file(text):
     for block in project_blocks:
         if not block.strip().startswith('Project:'):
             continue  # header/intro text skip karo
-            # Metadata nikalo regex se
+
+        # Metadata nikalo regex se
         title_match    = re.search(r'Project:\s*(.+)', block)
         category_match = re.search(r'Category:\s*(.+)', block)
         area_match      = re.search(r'Area:\s*(.+)', block)
         budget_match    = re.search(r'Budget:\s*(.+)', block)
         image_match     = re.search(r'Image:\s*(.+)', block)
 
-
-         chunk = {
+        chunk = {
             'text':     block.strip(),
             'title':    title_match.group(1).strip() if title_match else '',
             'category': category_match.group(1).strip() if category_match else '',
@@ -53,3 +54,5 @@ def chunk_projects_file(text):
         }
         chunks.append(chunk)
 
+    return chunks
+    
