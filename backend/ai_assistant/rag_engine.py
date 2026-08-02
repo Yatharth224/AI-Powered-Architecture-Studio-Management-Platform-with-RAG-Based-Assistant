@@ -18,3 +18,7 @@ def load_all_documents():
             with open(filepath, 'r', encoding='utf-8') as f:
                 documents[filename] = f.read()
     return documents
+
+
+
+def chunk_projects_file(text):
