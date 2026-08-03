@@ -85,3 +85,23 @@ def chunk_simple_text(text, source_name, chunk_size=150):
 
 
 
+
+def build_knowledge_base():
+    """
+    Saari files load karo, sabko chunk karo,
+    ek list mein return karo — RAG pipeline
+    ka pehla step complete
+    """
+    documents = load_all_documents()
+    all_chunks = []
+
+    for filename, text in documents.items():
+        if filename == 'projects.txt':
+            chunks = chunk_projects_file(text)
+        else:
+            source_name = filename.replace('.txt', '')
+            chunks = chunk_simple_text(text, source_name)
+
+        all_chunks.extend(chunks)
+
+    return all_chunks
