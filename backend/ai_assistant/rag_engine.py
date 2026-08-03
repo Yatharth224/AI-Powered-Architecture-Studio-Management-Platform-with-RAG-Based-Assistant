@@ -140,3 +140,9 @@ def build_faiss_index(chunks):
     # Har chunk ka 'text' field embed karo
     texts = [chunk['text'] for chunk in chunks]
     embeddings = model.encode(texts, show_progress_bar=True)
+
+    dimension = embeddings.shape[1]  # 768
+    index = faiss.IndexFlatL2(dimension)
+    index.add(np.array(embeddings).astype('float32'))
+
+    return index, chunks
