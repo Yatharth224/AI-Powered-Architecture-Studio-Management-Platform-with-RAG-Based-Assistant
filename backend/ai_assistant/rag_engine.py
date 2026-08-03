@@ -126,3 +126,17 @@ def get_model():
     if _model is None:
         _model = SentenceTransformer('BAAI/bge-base-en-v1.5')
     return _model
+
+
+
+
+def build_faiss_index(chunks):
+    """
+    Saare chunks ke embeddings banao,
+    FAISS index mein store karo
+    """
+    model = get_model()
+
+    # Har chunk ka 'text' field embed karo
+    texts = [chunk['text'] for chunk in chunks]
+    embeddings = model.encode(texts, show_progress_bar=True)
