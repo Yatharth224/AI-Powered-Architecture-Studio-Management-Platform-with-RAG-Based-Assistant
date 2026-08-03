@@ -55,4 +55,33 @@ def chunk_projects_file(text):
         chunks.append(chunk)
 
     return chunks
-    
+
+
+
+def chunk_simple_text(text, source_name, chunk_size=150):
+    """
+    Simple documents (company_profile, services, faq)
+    ke liye — paragraph-wise chunk karta hai
+    """
+    # Pehle paragraphs mein todo (blank line se)
+    paragraphs = [p.strip() for p in text.split('\n\n') if p.strip()]
+
+    chunks = []
+    for para in paragraphs:
+        if len(para.split()) < 10:
+            continue  # bahut chhote paragraphs (headings) skip karo
+
+        chunks.append({
+            'text':     para,
+            'title':    None,
+            'category': None,
+            'area':     None,
+            'budget':   None,
+            'image':    None,
+            'source':   source_name
+        })
+
+    return chunks
+
+
+
