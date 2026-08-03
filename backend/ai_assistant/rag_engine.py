@@ -112,3 +112,17 @@ def build_knowledge_base():
 import numpy as np
 import faiss
 from sentence_transformers import SentenceTransformer
+
+
+_model = None
+
+def get_model():
+    """
+    Model ko sirf EK BAAR load karo, phir REUSE karo
+    (Singleton pattern — resource-heavy cheez
+    baar baar nahi banate)
+    """
+    global _model
+    if _model is None:
+        _model = SentenceTransformer('BAAI/bge-base-en-v1.5')
+    return _model
