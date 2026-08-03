@@ -105,3 +105,10 @@ def build_knowledge_base():
         all_chunks.extend(chunks)
 
     return all_chunks
+
+
+
+
+import numpy as np
+import faiss
+from sentence_transformers import SentenceTransformer
