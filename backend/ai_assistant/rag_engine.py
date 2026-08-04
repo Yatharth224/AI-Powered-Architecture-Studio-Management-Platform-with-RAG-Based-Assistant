@@ -130,59 +130,21 @@ def get_model():
 
 
 
-def build_faiss_index(chunks):
-    """
-    Saare chunks ke embeddings banao,
-    FAISS index mein store karo
-    """
-    model = get_model()
-
-    # Har chunk ka 'text' field embed karo
-    texts = [chunk['text'] for chunk in chunks]
-    embeddings = model.encode(texts, show_progress_bar=True)
-
-    dimension = embeddings.shape[1]  # 768
-    index = faiss.IndexFlatL2(dimension)
-    index.add(np.array(embeddings).astype('float32'))
-
-    return index, chunks
-
-
-
-def extract_category_from_query(query):
-    """
-    Query mein category keyword hai kya check karo
-    (jaise 'residential', 'office')
-    """
-    category_keywords = {
-        'residential': 'Residential',
-        'office': 'Office / Commercial',
-        'commercial': 'Office / Commercial',
-        'hospitality': 'Hospitality',
-        'hotel': 'Hospitality',
-        'resort': 'Hospitality',
-        'restaurant': 'Hospitality',
-        'cafe': 'Hospitality',
-        'retail': 'Retail',
-        'store': 'Retail',
-        'shop': 'Retail',
-        'institutional': 'Institutional',
-        'hospital': 'Institutional',
-        'sports': 'Institutional',
-        'hostel': 'Institutional',
-    }
-
-    query_lower = query.lower()
-    for keyword, category in category_keywords.items():
-        if keyword in query_lower:
-            return category
-    return None
-
-
 def search_knowledge_base(query, index, chunks, top_k=3):
     """
     Query lekar SABSE RELEVANT chunks dhundta hai
     Pehle category filter try karta hai,
     warna embedding search karta hai
     """
-    
+    # STEP 1: Category keyword check karo
+    matched_category = extract_category_from_query(query)
+
+    if matched_category:
+        # Direct filter — us category ke SAARE
+        # projects nikal lo (embedding ki zaroorat nahi)
+        matching_chunks = [
+            c for c in chunks
+            if c.get('category') == matched_category
+        ]
+        if matching_chunks:
+            return matching_chunks
