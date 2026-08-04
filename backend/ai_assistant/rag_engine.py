@@ -179,3 +179,10 @@ def extract_category_from_query(query):
     return None
 
 
+def search_knowledge_base(query, index, chunks, top_k=3):
+    """
+    Query lekar SABSE RELEVANT chunks dhundta hai
+    Pehle category filter try karta hai,
+    warna embedding search karta hai
+    """
+    
