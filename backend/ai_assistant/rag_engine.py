@@ -172,4 +172,10 @@ def extract_category_from_query(query):
         'hostel': 'Institutional',
     }
 
-    
+    query_lower = query.lower()
+    for keyword, category in category_keywords.items():
+        if keyword in query_lower:
+            return category
+    return None
+
+
