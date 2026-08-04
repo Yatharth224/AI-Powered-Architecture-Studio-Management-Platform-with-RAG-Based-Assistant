@@ -146,3 +146,30 @@ def build_faiss_index(chunks):
     index.add(np.array(embeddings).astype('float32'))
 
     return index, chunks
+
+
+
+def extract_category_from_query(query):
+    """
+    Query mein category keyword hai kya check karo
+    (jaise 'residential', 'office')
+    """
+    category_keywords = {
+        'residential': 'Residential',
+        'office': 'Office / Commercial',
+        'commercial': 'Office / Commercial',
+        'hospitality': 'Hospitality',
+        'hotel': 'Hospitality',
+        'resort': 'Hospitality',
+        'restaurant': 'Hospitality',
+        'cafe': 'Hospitality',
+        'retail': 'Retail',
+        'store': 'Retail',
+        'shop': 'Retail',
+        'institutional': 'Institutional',
+        'hospital': 'Institutional',
+        'sports': 'Institutional',
+        'hostel': 'Institutional',
+    }
+
+    
