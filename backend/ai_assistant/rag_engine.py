@@ -148,3 +148,12 @@ def search_knowledge_base(query, index, chunks, top_k=3):
         ]
         if matching_chunks:
             return matching_chunks
+
+    # STEP 2: Embedding search (specific ya vague query)
+    model = get_model()
+    query_embedding = model.encode([query]).astype('float32')
+
+    distances, indices = index.search(query_embedding, top_k)
+
+    results = [chunks[i] for i in indices[0]]
+    return results    
