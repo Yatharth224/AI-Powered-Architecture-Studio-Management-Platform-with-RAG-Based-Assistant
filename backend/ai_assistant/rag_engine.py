@@ -191,3 +191,12 @@ Answer:"""
 
     model = genai.GenerativeModel('gemini-2.5-flash')
     response = model.generate_content(prompt)
+
+
+      # Images bhi nikalo results se
+    images = [r['image'] for r in search_results if r.get('image')]
+
+    return {
+        'answer': response.text,
+        'images': images
+    }
