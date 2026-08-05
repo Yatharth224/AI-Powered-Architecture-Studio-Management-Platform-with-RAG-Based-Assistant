@@ -161,7 +161,7 @@ def search_knowledge_base(query, index, chunks, top_k=3):
 
 
 
-mport google.generativeai as genai
+import google.generativeai as genai
 from django.conf import settings
 
 genai.configure(api_key=settings.GEMINI_API_KEY)
