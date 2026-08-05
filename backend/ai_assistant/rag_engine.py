@@ -174,3 +174,16 @@ def generate_answer(query, search_results):
     """
     # Context banao — saare matched chunks ka text jodo
     context = "\n\n---\n\n".join([r['text'] for r in search_results])
+
+
+    prompt = f"""You are a helpful assistant for Virasat Studio, an architecture and interior design firm.
+Answer the user's question using ONLY the context provided below.
+If the answer is not in the context, say you don't have that information.
+Keep the answer natural, friendly, and concise.
+
+Context:
+{context}
+
+Question: {query}
+
+Answer:"""
