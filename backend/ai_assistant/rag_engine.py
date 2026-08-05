@@ -157,3 +157,20 @@ def search_knowledge_base(query, index, chunks, top_k=3):
 
     results = [chunks[i] for i in indices[0]]
     return results    
+
+
+
+
+mport google.generativeai as genai
+from django.conf import settings
+
+genai.configure(api_key=settings.GEMINI_API_KEY)
+
+
+def generate_answer(query, search_results):
+    """
+    Search se mile chunks + query, Gemini ko
+    bhejo, natural language answer lo
+    """
+    # Context banao — saare matched chunks ka text jodo
+    context = "\n\n---\n\n".join([r['text'] for r in search_results])
