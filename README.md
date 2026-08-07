@@ -18,3 +18,5 @@ Develop a centralized platform for architecture studio operations
 Enable efficient project lifecycle management
 Improve communication between clients and architects
 Implement secure authentication and authorization 
+Provide role-based access control
+Automate requirement analysis using Artificial Intelligence
