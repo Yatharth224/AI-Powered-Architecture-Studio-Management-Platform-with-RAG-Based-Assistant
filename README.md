@@ -14,3 +14,6 @@ The proposed solution is an AI-powered architecture studio management platform t
  
 
  2. Project Objectives
+Develop a centralized platform for architecture studio operations
+Enable efficient project lifecycle management
+ 
