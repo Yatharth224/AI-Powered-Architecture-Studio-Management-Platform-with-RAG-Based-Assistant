@@ -12,11 +12,15 @@ The proposed solution is an AI-powered architecture studio management platform t
  
 ---
  
-
- 2. Project Objectives
-Develop a centralized platform for architecture studio operations
-Enable efficient project lifecycle management
-Improve communication between clients and architects
-Implement secure authentication and authorization 
-Provide role-based access control
-Automate requirement analysis using Artificial Intelligence
+## 2. Project Objectives
+ 
+- Develop a centralized platform for architecture studio operations
+- Enable efficient project lifecycle management
+- Improve communication between clients and architects
+- Implement secure authentication and authorization
+- Provide role-based access control
+- Automate requirement analysis using Artificial Intelligence
+- Build a RAG-based assistant for intelligent question answering
+- Manage project documents efficiently
+- Provide real-time analytics and project insights
+---
