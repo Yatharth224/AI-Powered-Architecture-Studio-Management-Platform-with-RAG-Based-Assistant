@@ -37,3 +37,64 @@ The proposed solution is an AI-powered architecture studio management platform t
  
 ---
  
+
+## 4. System Architecture Overview
+ 
+```mermaid
+flowchart TB
+    subgraph Client Layer
+        A[Web Browser / SPA - React/Next.js]
+    end
+ 
+    subgraph Edge Layer
+        B[CDN - Static Assets]
+        C[Load Balancer / ALB]
+        D[WAF - OWASP Rule Set]
+    end
+ 
+    subgraph Application Layer - Auto Scaling
+        E1[Django API Node 1]
+        E2[Django API Node 2]
+        E3[Django API Node N]
+    end
+ 
+    subgraph Async Layer
+        F[Celery Workers]
+        G[Redis - Cache / Broker / Sessions]
+    end
+ 
+    subgraph AI Layer
+        H[RAG Orchestrator]
+        I[Vector DB - ChromaDB/FAISS]
+        J[LLM API - Gemini/OpenAI]
+    end
+ 
+    subgraph Data Layer
+        K[(PostgreSQL Primary)]
+        L[(PostgreSQL Read Replicas)]
+        M[Object Storage - S3/Cloudinary]
+    end
+ 
+    A --> B
+    A --> C
+    C --> D
+    D --> E1
+    D --> E2
+    D --> E3
+    E1 --> G
+    E2 --> G
+    E3 --> G
+    E1 --> F
+    F --> K
+    E1 --> K
+    E1 --> L
+    E1 --> H
+    H --> I
+    H --> J
+    E1 --> M
+```
+ 
+**Flow summary:** Client requests hit the CDN for static content or pass through the Load Balancer and WAF before reaching stateless Django API nodes. API nodes read/write through Redis (cache/session) and PostgreSQL (primary for writes, replicas for reads), offload heavy work to Celery, and route AI/RAG queries to the vector database and LLM provider. Files go directly to object storage via signed URLs.
+ 
+---
+  
