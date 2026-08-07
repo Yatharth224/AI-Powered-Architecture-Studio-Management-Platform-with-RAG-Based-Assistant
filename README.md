@@ -24,3 +24,16 @@ The proposed solution is an AI-powered architecture studio management platform t
 - Manage project documents efficiently
 - Provide real-time analytics and project insights
 ---
+
+
+## 3. User Roles
+ 
+| Role | Capabilities |
+|------|--------------|
+| **Visitor** | Browse projects/services, view company info, submit inquiries, use AI assistant |
+| **Client** | Register/login, track project progress, upload documents, view milestones, access quotations, message architects |
+| **Architect** | Manage assigned projects, update milestones, upload design files, review client requirements |
+| **Admin** | Manage users/roles, assign projects, monitor progress, manage services/content, view analytics, configure AI/system settings |
+ 
+---
+ 
