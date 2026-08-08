@@ -108,4 +108,17 @@ sequenceDiagram
     participant API as Django API
     participant R as Redis
     participant DB as PostgreSQL
+
+
+    U->>FE: Enter credentials / Google OAuth
+    FE->>API: POST /auth/login
+    API->>DB: Verify user credentials
+    DB-->>API: User record + role
+    API->>API: Generate JWT (access + refresh)
+    API->>R: Store refresh token / session metadata
+    API-->>FE: Return access + refresh tokens
+    FE->>API: Subsequent requests with Bearer token
+    API->>API: Validate JWT + check RBAC permission
+    API-->>FE: Authorized response / 403 if denied
+```
  
