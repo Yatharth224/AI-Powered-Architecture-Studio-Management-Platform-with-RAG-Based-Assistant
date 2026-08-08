@@ -1,10 +1,28 @@
 import os
 import re
+import numpy as np
+import faiss
 from django.conf import settings
+from sentence_transformers import SentenceTransformer
+from google import genai
+
+
+# ==========================================
+# SETUP
+# ==========================================
 
 KNOWLEDGE_BASE_DIR = os.path.join(
     settings.BASE_DIR, 'ai_assistant', 'knowledge_base'
 )
+
+client = genai.Client(api_key=settings.GEMINI_API_KEY)
+
+_model = None
+
+
+# ==========================================
+# STEP 1: LOAD DOCUMENTS
+# ==========================================
 
 def load_all_documents():
     """
@@ -20,6 +38,9 @@ def load_all_documents():
     return documents
 
 
+# ==========================================
+# STEP 2: CHUNKING
+# ==========================================
 
 def chunk_projects_file(text):
     """
@@ -57,8 +78,7 @@ def chunk_projects_file(text):
     return chunks
 
 
-
-def chunk_simple_text(text, source_name, chunk_size=150):
+def chunk_simple_text(text, source_name):
     """
     Simple documents (company_profile, services, faq)
     ke liye — paragraph-wise chunk karta hai
@@ -84,13 +104,10 @@ def chunk_simple_text(text, source_name, chunk_size=150):
     return chunks
 
 
-
-
 def build_knowledge_base():
     """
     Saari files load karo, sabko chunk karo,
-    ek list mein return karo — RAG pipeline
-    ka pehla step complete
+    ek list mein return karo
     """
     documents = load_all_documents()
     all_chunks = []
@@ -107,14 +124,9 @@ def build_knowledge_base():
     return all_chunks
 
 
-
-
-import numpy as np
-import faiss
-from sentence_transformers import SentenceTransformer
-
-
-_model = None
+# ==========================================
+# STEP 3: EMBEDDINGS + FAISS INDEX
+# ==========================================
 
 def get_model():
     """
@@ -128,6 +140,55 @@ def get_model():
     return _model
 
 
+def build_faiss_index(chunks):
+    """
+    Saare chunks ke embeddings banao,
+    FAISS index mein store karo
+    """
+    model = get_model()
+
+    texts = [chunk['text'] for chunk in chunks]
+    embeddings = model.encode(texts, show_progress_bar=True)
+
+    dimension = embeddings.shape[1]
+    index = faiss.IndexFlatL2(dimension)
+    index.add(np.array(embeddings).astype('float32'))
+
+    return index, chunks
+
+
+# ==========================================
+# STEP 4: SEARCH
+# ==========================================
+
+def extract_category_from_query(query):
+    """
+    Query mein category keyword hai kya check karo
+    (jaise 'residential', 'office')
+    """
+    category_keywords = {
+        'residential': 'Residential',
+        'office': 'Office / Commercial',
+        'commercial': 'Office / Commercial',
+        'hospitality': 'Hospitality',
+        'hotel': 'Hospitality',
+        'resort': 'Hospitality',
+        'restaurant': 'Hospitality',
+        'cafe': 'Hospitality',
+        'retail': 'Retail',
+        'store': 'Retail',
+        'shop': 'Retail',
+        'institutional': 'Institutional',
+        'hospital': 'Institutional',
+        'sports': 'Institutional',
+        'hostel': 'Institutional',
+    }
+
+    query_lower = query.lower()
+    for keyword, category in category_keywords.items():
+        if keyword in query_lower:
+            return category
+    return None
 
 
 def search_knowledge_base(query, index, chunks, top_k=3):
@@ -156,16 +217,12 @@ def search_knowledge_base(query, index, chunks, top_k=3):
     distances, indices = index.search(query_embedding, top_k)
 
     results = [chunks[i] for i in indices[0]]
-    return results    
+    return results
 
 
-
-
-import google.generativeai as genai
-from django.conf import settings
-
-genai.configure(api_key=settings.GEMINI_API_KEY)
-
+# ==========================================
+# STEP 5: GENERATE ANSWER (GEMINI)
+# ==========================================
 
 def generate_answer(query, search_results):
     """
@@ -174,7 +231,6 @@ def generate_answer(query, search_results):
     """
     # Context banao — saare matched chunks ka text jodo
     context = "\n\n---\n\n".join([r['text'] for r in search_results])
-
 
     prompt = f"""You are a helpful assistant for Virasat Studio, an architecture and interior design firm.
 Answer the user's question using ONLY the context provided below.
@@ -188,12 +244,12 @@ Question: {query}
 
 Answer:"""
 
+    response = client.models.generate_content(
+        model='gemini-3.5-flash-lite',
+        contents=prompt
+    )
 
-    model = genai.GenerativeModel('gemini-2.5-flash')
-    response = model.generate_content(prompt)
-
-
-      # Images bhi nikalo results se
+    # Images bhi nikalo results se
     images = [r['image'] for r in search_results if r.get('image')]
 
     return {
