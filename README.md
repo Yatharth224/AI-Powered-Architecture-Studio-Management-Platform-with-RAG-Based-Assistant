@@ -97,4 +97,15 @@ flowchart TB
 **Flow summary:** Client requests hit the CDN for static content or pass through the Load Balancer and WAF before reaching stateless Django API nodes. API nodes read/write through Redis (cache/session) and PostgreSQL (primary for writes, replicas for reads), offload heavy work to Celery, and route AI/RAG queries to the vector database and LLM provider. Files go directly to object storage via signed URLs.
  
 ---
-  
+
+
+## 5. Authentication & Authorization Flow
+ 
+```mermaid
+sequenceDiagram
+    participant U as User
+    participant FE as Frontend
+    participant API as Django API
+    participant R as Redis
+    participant DB as PostgreSQL
+ 
