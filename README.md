@@ -121,4 +121,8 @@ sequenceDiagram
     API->>API: Validate JWT + check RBAC permission
     API-->>FE: Authorized response / 403 if denied
 ```
+
  
+**Key controls:** short-lived access tokens, refresh token rotation, Redis-backed token blacklist on logout, and RBAC permission checks on every protected endpoint.
+ 
+---
