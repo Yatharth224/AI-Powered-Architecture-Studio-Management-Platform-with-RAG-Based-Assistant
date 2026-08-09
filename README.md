@@ -136,3 +136,12 @@ sequenceDiagram
 - Password reset functionality
 - Role-Based Access Control (RBAC)
 - OAuth 2.0 integration with Google
+
+
+### Project Management
+- Create and manage projects
+- Assign architects to projects
+- Track project status
+- Manage project timelines
+- Define project milestones
+- Monitor project progress
