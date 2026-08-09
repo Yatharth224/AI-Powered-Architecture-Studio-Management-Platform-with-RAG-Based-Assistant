@@ -154,3 +154,10 @@ sequenceDiagram
 - Manage contracts and reports
 - Secure file access based on user roles
 - Cloud-based file storage
+
+
+### Inquiry Management
+- Contact form integration
+- Lead capture and management
+- Consultation request handling
+- Inquiry status tracking
