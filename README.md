@@ -126,3 +126,13 @@ sequenceDiagram
 **Key controls:** short-lived access tokens, refresh token rotation, Redis-backed token blacklist on logout, and RBAC permission checks on every protected endpoint.
  
 ---
+
+## 6. Core Features
+ 
+### Authentication and Authorization
+- User registration and login
+- JWT-based authentication
+- Refresh token mechanism
+- Password reset functionality
+- Role-Based Access Control (RBAC)
+- OAuth 2.0 integration with Google
