@@ -145,3 +145,12 @@ sequenceDiagram
 - Manage project timelines
 - Define project milestones
 - Monitor project progress
+
+
+
+### Document Management
+- Upload project documents
+- Store blueprints and floor plans
+- Manage contracts and reports
+- Secure file access based on user roles
+- Cloud-based file storage
