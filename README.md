@@ -161,3 +161,9 @@ sequenceDiagram
 - Lead capture and management
 - Consultation request handling
 - Inquiry status tracking
+
+
+### Service Management
+- Create and update services
+- Dynamic service listing
+- Service categorization
