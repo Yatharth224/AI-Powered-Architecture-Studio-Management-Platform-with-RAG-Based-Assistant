@@ -167,3 +167,14 @@ sequenceDiagram
 - Create and update services
 - Dynamic service listing
 - Service categorization
+
+
+
+### Analytics Dashboard
+- Total projects
+- Active projects
+- Completed projects
+- Client growth metrics
+- Lead conversion statistics
+- Revenue insights
+---
