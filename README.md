@@ -178,3 +178,13 @@ sequenceDiagram
 - Lead conversion statistics
 - Revenue insights
 ---
+
+## 7. Project Lifecycle Flow
+ 
+```mermaid
+flowchart LR
+    A[Inquiry Submitted] --> B[Admin Reviews Lead]
+    B --> C[Project Created & Architect Assigned]
+    C --> D[Requirements Gathered - AI Requirement Analyzer]
+    D --> E[Milestones Defined]
+    E --> F[Design & Documents Uploaded]
