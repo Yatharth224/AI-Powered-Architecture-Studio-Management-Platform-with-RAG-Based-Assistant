@@ -205,3 +205,9 @@ flowchart LR
  
 ### AI Requirement Analyzer
 Automatically extracts:
+- Property type
+- Plot dimensions
+- Budget range
+- Architectural style
+- Number of rooms
+- Project priorities
