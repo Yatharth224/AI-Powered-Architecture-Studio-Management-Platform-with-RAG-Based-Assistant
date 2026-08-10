@@ -197,3 +197,11 @@ flowchart LR
     J -- No --> K[Project Marked Completed]
     K --> L[Analytics Updated]
 ```
+
+
+---
+ 
+## 8. Artificial Intelligence Features
+ 
+### AI Requirement Analyzer
+Automatically extracts:
