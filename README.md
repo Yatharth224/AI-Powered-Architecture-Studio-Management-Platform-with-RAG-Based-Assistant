@@ -211,3 +211,8 @@ Automatically extracts:
 - Architectural style
 - Number of rooms
 - Project priorities
+
+
+### AI Project Summary Generator
+Generates structured project summaries based on client inputs.
+ 
