@@ -258,3 +258,11 @@ flowchart TB
     J --> K[Context-Aware Response]
     K --> L[Return to User]
 ```
+
+
+### Example Queries
+- What services do you offer?
+- Show completed villa projects.
+- What is your design process?
+- Which projects are available within a specific budget range?
+---
