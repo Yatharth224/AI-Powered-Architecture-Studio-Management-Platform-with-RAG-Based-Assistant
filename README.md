@@ -218,4 +218,11 @@ Generates structured project summaries based on client inputs.
  
 ### AI Cost Estimation
 Provides estimated construction cost ranges based on project requirements.
- 
+
+### AI Design Recommendation
+Suggests:
+- Design styles
+- Room distribution
+- Space allocation
+- Layout recommendations
+---
