@@ -247,14 +247,14 @@ Suggests:
 flowchart TB
     A[Documents Uploaded] --> B[Chunking]
     B --> C[Generate Text Embeddings]
-    C --> D[(Vector Database - ChromaDB/FAISS)]
+    C --> D[(Vector Database - FAISS)]
  
     E[User Query] --> F[Convert Query to Embedding]
     F --> G[Cosine Similarity Search]
     D --> G
     G --> H[Retrieve Relevant Chunks]
     H --> I[Build Context Prompt]
-    I --> J[LLM - Gemini/OpenAI]
+    I --> J[LLM - Gemini]
     J --> K[Context-Aware Response]
     K --> L[Return to User]
 ```
