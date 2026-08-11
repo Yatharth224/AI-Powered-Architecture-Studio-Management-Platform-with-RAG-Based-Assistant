@@ -216,3 +216,6 @@ Automatically extracts:
 ### AI Project Summary Generator
 Generates structured project summaries based on client inputs.
  
+### AI Cost Estimation
+Provides estimated construction cost ranges based on project requirements.
+ 
