@@ -226,3 +226,14 @@ Suggests:
 - Space allocation
 - Layout recommendations
 ---
+
+
+
+## 9. RAG-Based Assistant
+ 
+### Knowledge Sources
+- Company portfolio documents
+- Service brochures
+- Project descriptions
+- FAQs
+- Company profile documents
