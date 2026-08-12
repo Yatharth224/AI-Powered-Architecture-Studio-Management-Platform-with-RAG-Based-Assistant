@@ -266,3 +266,20 @@ flowchart TB
 - What is your design process?
 - Which projects are available within a specific budget range?
 ---
+
+
+
+## 11. Functional Modules
+ 
+- User Management
+- Authentication and Authorization
+- Project Management
+- Milestone Tracking
+- Document Management
+- Service Management
+- Inquiry Management
+- AI Requirement Analysis
+- RAG-Based Assistant
+- Analytics Dashboard
+- Notification System
+---
