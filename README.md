@@ -286,4 +286,7 @@ flowchart TB
 
 
 ## 11. Scalability Architecture — Supporting 10,000 Concurrent Requests
+
+### 12.1 Stateless Application Layer
+All Django API instances are stateless; session data, JWT blacklists, and cache live in Redis, so any node can serve any request. This lets the Auto Scaling Group add/remove nodes freely.
  
