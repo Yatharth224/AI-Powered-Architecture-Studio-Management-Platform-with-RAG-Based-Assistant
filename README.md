@@ -285,5 +285,5 @@ flowchart TB
 ---
 
 
-## 12. Scalability Architecture — Supporting 10,000 Concurrent Requests
+## 11. Scalability Architecture — Supporting 10,000 Concurrent Requests
  
