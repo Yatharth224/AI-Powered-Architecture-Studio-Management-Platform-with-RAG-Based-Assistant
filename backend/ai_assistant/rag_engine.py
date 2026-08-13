@@ -194,15 +194,11 @@ def extract_category_from_query(query):
 def search_knowledge_base(query, index, chunks, top_k=3):
     """
     Query lekar SABSE RELEVANT chunks dhundta hai
-    Pehle category filter try karta hai,
-    warna embedding search karta hai
     """
     # STEP 1: Category keyword check karo
     matched_category = extract_category_from_query(query)
 
     if matched_category:
-        # Direct filter — us category ke SAARE
-        # projects nikal lo (embedding ki zaroorat nahi)
         matching_chunks = [
             c for c in chunks
             if c.get('category') == matched_category
@@ -210,31 +206,42 @@ def search_knowledge_base(query, index, chunks, top_k=3):
         if matching_chunks:
             return matching_chunks
 
-    # STEP 2: Embedding search (specific ya vague query)
+    # STEP 2: Embedding search
     model = get_model()
     query_embedding = model.encode([query]).astype('float32')
 
     distances, indices = index.search(query_embedding, top_k)
 
-    results = [chunks[i] for i in indices[0]]
-    return results
+    # NAYA: Distance-based filtering
+    # Sirf WO results lo jo SACH MEIN close hain
+    # (bahut door wale results ko hata do)
+    results = []
+    for idx, dist in zip(indices[0], distances[0]):
+        results.append((chunks[idx], dist))
 
+    # Sabse close result ki distance nikalo
+    best_distance = results[0][1]
 
+    # Sirf WO results rakho jo best se 40% zyada
+    # door nahi hain (threshold — experiment se
+    # tune kiya ja sakta hai)
+    filtered_results = [
+        chunk for chunk, dist in results
+        if dist <= best_distance * 1.4
+    ]
+
+    return filtered_results
 # ==========================================
 # STEP 5: GENERATE ANSWER (GEMINI)
 # ==========================================
 
 def generate_answer(query, search_results):
-    """
-    Search se mile chunks + query, Gemini ko
-    bhejo, natural language answer lo
-    """
-    # Context banao — saare matched chunks ka text jodo
     context = "\n\n---\n\n".join([r['text'] for r in search_results])
 
     prompt = f"""You are a helpful assistant for Virasat Studio, an architecture and interior design firm.
-Answer the user's question using ONLY the context provided below.
-If the answer is not in the context, say you don't have that information.
+Answer the user's question using the context provided below.
+If the exact answer isn't directly stated, use the most relevant information from the context to give a helpful response.
+Only say you don't have the information if the context is completely unrelated to the question.
 Keep the answer natural, friendly, and concise.
 
 Context:
@@ -249,7 +256,6 @@ Answer:"""
         contents=prompt
     )
 
-    # Images bhi nikalo results se
     images = [r['image'] for r in search_results if r.get('image')]
 
     return {
