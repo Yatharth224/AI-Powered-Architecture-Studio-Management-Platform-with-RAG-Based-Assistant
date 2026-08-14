@@ -307,7 +307,7 @@ API nodes scale out/in based on CPU, memory, and request queue depth. Each node 
 - Query optimization using `select_related` / `prefetch_related` to avoid N+1 storms
 
 
-### 12.5 Caching Strategy (Redis)
+### 11.5 Caching Strategy (Redis)
 - Response caching for expensive read-heavy endpoints
 - Query result caching with short TTLs for dashboard aggregates
 - Session and refresh-token caching to avoid DB hits per request
