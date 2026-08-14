@@ -289,4 +289,8 @@ flowchart TB
 
 ### 11.1 Stateless Application Layer
 All Django API instances are stateless; session data, JWT blacklists, and cache live in Redis, so any node can serve any request. This lets the Auto Scaling Group add/remove nodes freely.
+
+
+### 12.2 Load Balancing
+An Application Load Balancer (ALB) distributes traffic across API nodes with health checks removing unhealthy instances from rotation.
  
