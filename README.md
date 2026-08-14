@@ -298,4 +298,10 @@ An Application Load Balancer (ALB) distributes traffic across API nodes with hea
 
 ### 12.3 Horizontal Auto-Scaling
 API nodes scale out/in based on CPU, memory, and request queue depth. Each node handles roughly 500–800 concurrent connections; 15–20 nodes comfortably cover 10,000 concurrent requests with headroom.
- 
+
+
+### 12.4 Database Scalability
+- Connection pooling via PgBouncer to prevent connection exhaustion
+- Read replicas handle read-heavy traffic (listings, portfolio browsing, analytics)
+- Indexing on frequently filtered columns (project status, client ID, date ranges)
+- Query optimization using `select_related` / `prefetch_related` to avoid N+1 storms
