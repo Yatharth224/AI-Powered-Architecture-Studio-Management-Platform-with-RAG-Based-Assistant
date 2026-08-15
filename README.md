@@ -314,7 +314,3 @@ API nodes scale out/in based on CPU, memory, and request queue depth. Each node 
 - Cache invalidation on relevant writes
 
 
- 
-### 12.7 CDN & Static Asset Offloading
-Static assets and frontend bundles are served via CloudFront CDN; uploaded documents live in S3/Cloudinary, never served directly through app servers.
- 
