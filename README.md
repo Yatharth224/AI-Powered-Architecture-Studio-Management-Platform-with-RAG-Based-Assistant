@@ -322,3 +322,8 @@ AI requirement analysis, RAG document ingestion/embedding generation, cost estim
 ### 11.7 CDN & Static Asset Offloading
 Static assets and frontend bundles are served via CloudFront CDN; uploaded documents live in S3/Cloudinary, never served directly through app servers.
  
+
+
+### 11.8 Rate Limiting & Throttling
+Per-user and per-IP throttling (DRF Throttling / Redis token bucket) protects against traffic spikes and ensures fair resource allocation under load.
+ 
