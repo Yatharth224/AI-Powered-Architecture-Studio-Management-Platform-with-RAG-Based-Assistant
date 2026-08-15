@@ -315,10 +315,10 @@ API nodes scale out/in based on CPU, memory, and request queue depth. Each node 
 
  
 
-### 12.6 Asynchronous Processing
+### 11.6 Asynchronous Processing
 AI requirement analysis, RAG document ingestion/embedding generation, cost estimation, and notifications run on Celery workers via a Redis/RabbitMQ broker — keeping API response times low regardless of AI/LLM latency. Worker pools scale independently based on queue depth.
- 
-  
+
+
 ### 12.7 CDN & Static Asset Offloading
 Static assets and frontend bundles are served via CloudFront CDN; uploaded documents live in S3/Cloudinary, never served directly through app servers.
  
