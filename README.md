@@ -312,3 +312,9 @@ API nodes scale out/in based on CPU, memory, and request queue depth. Each node 
 - Query result caching with short TTLs for dashboard aggregates
 - Session and refresh-token caching to avoid DB hits per request
 - Cache invalidation on relevant writes
+
+
+ 
+### 12.7 CDN & Static Asset Offloading
+Static assets and frontend bundles are served via CloudFront CDN; uploaded documents live in S3/Cloudinary, never served directly through app servers.
+ 
