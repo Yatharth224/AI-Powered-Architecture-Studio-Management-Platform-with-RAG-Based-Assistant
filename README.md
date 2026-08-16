@@ -327,6 +327,6 @@ Static assets and frontend bundles are served via CloudFront CDN; uploaded docum
 ### 11.8 Rate Limiting & Throttling
 Per-user and per-IP throttling (DRF Throttling / Redis token bucket) protects against traffic spikes and ensures fair resource allocation under load.
  
-### 12.9 Observability & Auto-Recovery
+### 11.9 Observability & Auto-Recovery
 CloudWatch / Prometheus + Grafana monitor latency, error rates, and saturation, triggering auto-scaling and alerts before degradation impacts users.
  
