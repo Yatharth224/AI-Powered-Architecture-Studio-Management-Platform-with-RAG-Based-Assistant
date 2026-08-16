@@ -346,3 +346,5 @@ CloudWatch / Prometheus + Grafana monitor latency, error rates, and saturation, 
 | **A07** | Identification & Authentication Failures | Short-lived JWT access tokens with refresh rotation and blacklisting; OAuth 2.0 federated login; lockout/backoff on repeated failed logins |
 | **A08** | Software & Data Integrity Failures | CI/CD validates signed commits and dependency checksums; upload validation for type/size/content; no unsigned code at runtime |
 | **A09** | Security Logging & Monitoring Failures | Centralized structured logging of auth events and access failures; audit trail for sensitive admin actions; real-time anomaly alerting |
+| **A10** | Server-Side Request Forgery (SSRF) | Outbound requests restricted to an allow-list of domains; no unvalidated user-supplied URLs fetched server-side; metadata endpoints blocked from egress |
+ 
