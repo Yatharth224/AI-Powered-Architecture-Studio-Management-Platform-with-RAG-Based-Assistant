@@ -331,3 +331,12 @@ Per-user and per-IP throttling (DRF Throttling / Redis token bucket) protects ag
 CloudWatch / Prometheus + Grafana monitor latency, error rates, and saturation, triggering auto-scaling and alerts before degradation impacts users.
  
 --- 
+
+
+## 13. Security Architecture — OWASP Top 10 (2021) Compliance
+ 
+| # | Risk | Mitigation Implemented |
+|---|------|------------------------|
+| **A01** | Broken Access Control | RBAC enforced on every endpoint; object-level permission checks (client can only access own project); deny-by-default policy |
+| **A02** | Cryptographic Failures | TLS 1.2+ in transit; passwords hashed with Argon2/bcrypt; sensitive fields encrypted at rest; secrets in AWS Secrets Manager |
+| **A03** | Injection | Django ORM parameterized queries; stric
