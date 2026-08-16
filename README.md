@@ -339,4 +339,10 @@ CloudWatch / Prometheus + Grafana monitor latency, error rates, and saturation, 
 |---|------|------------------------|
 | **A01** | Broken Access Control | RBAC enforced on every endpoint; object-level permission checks (client can only access own project); deny-by-default policy |
 | **A02** | Cryptographic Failures | TLS 1.2+ in transit; passwords hashed with Argon2/bcrypt; sensitive fields encrypted at rest; secrets in AWS Secrets Manager |
-| **A03** | Injection | Django ORM parameterized queries; stric
+| **A03** | Injection | Django ORM parameterized queries; strict DRF serializer validation; sanitized input passed into RAG/LLM prompts to prevent prompt injection |
+| **A04** | Insecure Design | Threat modeling for auth and file-upload flows; RBAC and rate limiting designed in from the start |
+| **A05** | Security Misconfiguration | `DEBUG=False` in production; hardened headers (CSP, X-Frame-Options, HSTS); least-privilege IAM roles; env-based secret config |
+| **A06** | Vulnerable & Outdated Components | Automated dependency scanning (`pip-audit`, `npm audit`, Dependabot) in CI/CD; scheduled patch cadence |
+| **A07** | Identification & Authentication Failures | Short-lived JWT access tokens with refresh rotation and blacklisting; OAuth 2.0 federated login; lockout/backoff on repeated failed logins |
+| **A08** | Software & Data Integrity Failures | CI/CD validates signed commits and dependency checksums; upload validation for type/size/content; no unsigned code at runtime |
+| **A09** | Security Logging & Monitoring Failures | Centralized structured logging of auth events and access failures; audit trail for sensitive admin actions; real-time anomaly alerting |
