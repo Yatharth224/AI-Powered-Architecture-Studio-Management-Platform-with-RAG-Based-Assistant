@@ -330,3 +330,4 @@ Per-user and per-IP throttling (DRF Throttling / Redis token bucket) protects ag
 ### 11.9 Observability & Auto-Recovery
 CloudWatch / Prometheus + Grafana monitor latency, error rates, and saturation, triggering auto-scaling and alerts before degradation impacts users.
  
+--- 
