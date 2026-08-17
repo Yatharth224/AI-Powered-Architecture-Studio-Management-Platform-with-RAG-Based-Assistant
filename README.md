@@ -357,3 +357,23 @@ CloudWatch / Prometheus + Grafana monitor latency, error rates, and saturation, 
 - MFA available for Admin and Architect roles
 - Regular penetration testing integrated into the release pipeline
 ---
+
+## 14. Deployment Architecture
+ 
+```mermaid
+flowchart LR
+    A[Developer Push] --> B[CI Pipeline: Build + Test]
+    B --> C[Security Scan: SAST/Dependency Audit]
+    C --> D[Docker Image Build]
+    D --> E[Push to Container Registry]
+    E --> F[Deploy to AWS ECS/EKS]
+    F --> G{Health Check Pass?}
+    G -- Yes --> H[Traffic Shifted - Rolling/Blue-Green]
+    G -- No --> I[Automatic Rollback]
+```
+ 
+- **Containerization:** every service (API, Celery workers, RAG orchestrator) packaged as a Docker image
+- **Orchestration:** AWS ECS/EKS manages lifecycle, health checks, rolling deployments
+- **Infrastructure as Code:** Terraform/CloudFormation for repeatable, auditable environments
+- **CI/CD:** build → test → security scan → deploy, with rollback on failed health checks
+---
