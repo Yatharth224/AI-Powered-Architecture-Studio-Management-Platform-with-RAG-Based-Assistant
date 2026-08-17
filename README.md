@@ -348,3 +348,12 @@ CloudWatch / Prometheus + Grafana monitor latency, error rates, and saturation, 
 | **A09** | Security Logging & Monitoring Failures | Centralized structured logging of auth events and access failures; audit trail for sensitive admin actions; real-time anomaly alerting |
 | **A10** | Server-Side Request Forgery (SSRF) | Outbound requests restricted to an allow-list of domains; no unvalidated user-supplied URLs fetched server-side; metadata endpoints blocked from egress |
  
+
+ 
+### 13.1 Additional Hardening
+- WAF at the edge with OWASP Core Rule Set
+- API Gateway-level input validation ahead of application logic
+- Signed, time-limited URLs for document/asset access (no public buckets)
+- MFA available for Admin and Architect roles
+- Regular penetration testing integrated into the release pipeline
+---
