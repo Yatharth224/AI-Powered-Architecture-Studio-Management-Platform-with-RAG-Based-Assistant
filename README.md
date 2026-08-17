@@ -333,7 +333,7 @@ CloudWatch / Prometheus + Grafana monitor latency, error rates, and saturation, 
 --- 
 
 
-## 13. Security Architecture — OWASP Top 10 (2021) Compliance
+## 12. Security Architecture — OWASP Top 10 (2021) Compliance
  
 | # | Risk | Mitigation Implemented |
 |---|------|------------------------|
@@ -350,7 +350,7 @@ CloudWatch / Prometheus + Grafana monitor latency, error rates, and saturation, 
  
 
  
-### 1.1 Additional Hardening
+### 12.1 Additional Hardening
 - WAF at the edge with OWASP Core Rule Set
 - API Gateway-level input validation ahead of application logic
 - Signed, time-limited URLs for document/asset access (no public buckets)
