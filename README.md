@@ -377,3 +377,11 @@ flowchart LR
 - **Infrastructure as Code:** Terraform/CloudFormation for repeatable, auditable environments
 - **CI/CD:** build → test → security scan → deploy, with rollback on failed health checks
 ---
+
+## 15. Non-Functional Requirements
+ 
+| Category | Requirement |
+|----------|-------------|
+| Performance | Sub-300ms median API response time under 10,000 concurrent requests |
+| Scalability | Horizontal auto-scaling across stateless application nodes |
+| Security | Full OWASP Top 10 (2021) coverage; WAF, RBAC, encryption in transit/at rest |
