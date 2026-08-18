@@ -358,7 +358,7 @@ CloudWatch / Prometheus + Grafana monitor latency, error rates, and saturation, 
 - Regular penetration testing integrated into the release pipeline
 ---
 
-## 14. Deployment Architecture
+## 13. Deployment Architecture
  
 ```mermaid
 flowchart LR
