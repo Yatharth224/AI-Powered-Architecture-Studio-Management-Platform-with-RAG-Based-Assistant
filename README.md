@@ -385,3 +385,8 @@ flowchart LR
 | Performance | Sub-300ms median API response time under 10,000 concurrent requests |
 | Scalability | Horizontal auto-scaling across stateless application nodes |
 | Security | Full OWASP Top 10 (2021) coverage; WAF, RBAC, encryption in transit/at rest |
+| Reliability | Multi-AZ deployment, automated backups, read replicas for failover |
+| Maintainability | Modular Django app structure, documented REST APIs, CI/CD-enforced code quality |
+ 
+---
+ 
