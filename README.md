@@ -378,7 +378,7 @@ flowchart LR
 - **CI/CD:** build → test → security scan → deploy, with rollback on failed health checks
 ---
 
-## 15. Non-Functional Requirements
+## 14. Non-Functional Requirements
  
 | Category | Requirement |
 |----------|-------------|
